@@ -45,5 +45,16 @@
   max-height: 10000px;
 }
 .content{
-  
+  display: none; 
+ 
+}
+.content-active{
+  display: flex;
+}
+.box{
+  border: 1px solid;
+  width: 100%;
+  height: auto;
+  border-color: #fff;
+
 }
