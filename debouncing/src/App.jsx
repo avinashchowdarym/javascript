@@ -37,6 +37,7 @@ function App() {
 
   const [word,setWord] = useState('');
   const [ suggestions, setSuggestions] = useState([]); 
+  const [display,setDisplay] = useState();
 
   const bouncedWord = useDebounce(word,500);
   // data 
@@ -54,10 +55,22 @@ function App() {
   useEffect(()=>{
     fetchData();
   },[bouncedWord])
-
+  console.log(suggestions);
   const handleClick = () =>{
+    
+    setWord('');
+    
+
 
   }
+
+  const handleSelect = (item) => {
+    setWord(item.title);
+    setDisplay();
+    setDisplay(item);
+  }
+  console.log(display)
+
 
 
   return (
@@ -70,7 +83,7 @@ function App() {
           {
             suggestions.map((item,index)=>{
               return( 
-               <div key={index}>
+               <div key={index} onClick={()=>handleSelect(item)}>
                 <p>{item.title}</p>
                 </div>
 
@@ -79,6 +92,15 @@ function App() {
           }
         </div>
       }
+    <div className="show">
+        {
+          display ? 
+          <>
+          <img src={display.images[0]} style={{width: '100px',height: '100px'}}/>
+          </> : <></>
+        }
+
+      </div>
 
     </div>
 
